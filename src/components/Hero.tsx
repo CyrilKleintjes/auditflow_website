@@ -2,6 +2,24 @@ import { Button } from "@/components/ui/button";
 import heroDashboard from "@/assets/hero-dashboard.jpg";
 
 const Hero = () => {
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    
+    if (contactSection) {
+      contactSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest'
+      });
+    } else {
+      // Fallback: scroll to bottom of page
+      window.scrollTo({ 
+        top: document.documentElement.scrollHeight, 
+        behavior: 'smooth' 
+      });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-hero overflow-hidden">
       {/* Abstract wave pattern background */}
@@ -42,13 +60,21 @@ const Hero = () => {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="text-lg px-8 py-6 shadow-card hover:shadow-glow transition-all">
+            <div className="flex flex-col sm:flex-row gap-4 relative z-10">
+              <button 
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-md px-8 text-lg px-8 py-6 shadow-card hover:shadow-glow transition-all relative z-10"
+                onClick={scrollToContact}
+                style={{ pointerEvents: 'auto' }}
+              >
                 Get Started
-              </Button>
-              <Button variant="outline" size="lg" className="text-lg px-8 py-6 border-2">
+              </button>
+              <button 
+                className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-11 rounded-md px-8 text-lg px-8 py-6 border-2 relative z-10"
+                onClick={scrollToContact}
+                style={{ pointerEvents: 'auto' }}
+              >
                 Schedule Demo
-              </Button>
+              </button>
             </div>
 
             {/* Trust indicators */}
